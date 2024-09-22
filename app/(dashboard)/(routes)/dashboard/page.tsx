@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/image";
-import { MessageCircleCodeIcon } from "lucide-react";
+import { Menu, MessageCircleCodeIcon } from "lucide-react";
+import Heading from "@/components/heading";
 
 const tools = [
   {
@@ -33,12 +34,19 @@ const tools = [
 const Dashboard = () => {
   const router = useRouter();
   return (
-    <div className="h-[calc(100vh-5.3rem)] border m-3 rounded-lg pb-3 shadow-md bg-white">
+    <div className="h-[calc(100vh-5.3rem)] border m-3 rounded-xl p-3 shadow-md bg-white">
+      <Heading
+        title="Dashboard"
+        description="Welcome to The Sale Studios"
+        icon={Menu}
+        iconColor="text-sky-500"
+        bgColor="bg-sky-500/10"
+      />
       <div className="mb-8 flex flex-col items-center space-y-4">
         <Image className="my-4" src="/main-logo.png" width={280} height={100} alt="main" />
-        <h2 className="text-2xl md:text-4xl font-bold text-center mt-2">
+        {/* <h2 className="text-2xl md:text-4xl font-bold text-center mt-2">
           Hello 👋
-        </h2>
+        </h2> */}
         <p className="text-muted-foreground font-light text-small md:text-lg text-center">
           The Smartest AI Chatbots Here to Help You!
         </p>

@@ -1,41 +1,21 @@
 import prismadb from "./prismadb";
 
-export const addFiles = async (userId: string, newFile: string) => {
-  const userFiles = await prismadb.userFiles.findUnique({
+export const addFiles = async (userId: string, fileUrl: string, filename:string) => {
+  await prismadb.userFiles.create({
+    data: { 
+      userId: userId,
+      fileName: filename,
+      fileUrl: fileUrl
+   },
+  });
+};
+
+export const getAllFiles = async (userId: string) => {
+  const userFiles = await prismadb.userFiles.findMany({
     where: {
       userId: userId,
     },
   });
 
-  if (userFiles) {
-    let allFiles = userFiles?.count;
-    allFiles?.push(newFile);
-
-    await prismadb.userFiles.update({
-      where: {
-        userId: userId,
-      },
-      data: {
-        count: allFiles,
-      },
-    });
-  } else {
-    await prismadb.userFiles.create({
-        data: { userId: userId, count: [newFile] },
-      });
-  }
+  return userFiles;
 };
-
-
-export const getAllFiles = async (userId: string) => {
-    const userFiles = await prismadb.userFiles.findUnique({
-      where: {
-        userId: userId,
-      },
-    });
-  
-    return userFiles?.count
-  };
-  
-  
-  

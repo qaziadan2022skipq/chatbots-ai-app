@@ -16,7 +16,8 @@ datasource db {
 model UserFiles {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @unique
-  count String [] @default([])
+  fileName String 
+  fileUrl String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

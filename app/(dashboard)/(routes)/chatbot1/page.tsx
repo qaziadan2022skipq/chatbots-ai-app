@@ -47,26 +47,37 @@ const Conversation = () => {
   });
 
   const handleFileChange = async (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      const data = new FormData();
-      if (event.target.files.length < 0) return;
-      data.append("file", event.target.files[0]);
-      const response = await fetch("/api/upload-file", {
-        method: "POST",
-        body: data,
-      });
-      const newData = await response.json();
-      console.log(newData);
-      localStorage.setItem("chatbot1FileId", newData.fileId);
-      const res = await edgestore.publicFiles.upload({file})
-      // save data to your database
-      const saved  = await axios.post("/api/save-user-file", {url: res.url})
-      console.log(res)
+    try {
+      const file = event.target.files[0] as File;
+      if (file) {
+        const data = new FormData();
+        if (event.target.files.length < 0) return;
+        data.append("file", event.target.files[0]);
+        const response = await fetch("/api/upload-file", {
+          method: "POST",
+          body: data,
+        });
+        const newData = await response.json();
+        console.log(newData);
+        localStorage.setItem("chatbot1FileId", newData.fileId);
+        const res = await edgestore.publicFiles.upload({ file });
+        // save data to your database
+        const saved = await axios.post("/api/save-user-file", {
+          url: res.url,
+          filename: file.name,
+        });
+        console.log(res);
+        toast({
+          variant: "default",
+          title: "Success",
+          description: "File uploaded Successfully",
+        });
+      }
+    } catch (error) {
       toast({
-        variant: "default",
-        title: "Success",
-        description: "File uploaded Successfully",
+        variant: "destructive",
+        title: "Error",
+        description: "Please upload file again",
       });
     }
   };
@@ -102,7 +113,7 @@ const Conversation = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-5.3rem)] border m-3 rounded-lg pb-3 shadow-md bg-white">
+    <div className="flex flex-col h-[calc(100vh-5.3rem)] border m-3 rounded-xl pb-3 shadow-md bg-white">
       <div className="flex-1 px-4 lg:px-8 overflow-auto">
         <div className="space-y-4 mt-4">
           <div className="flex flex-col gap-y-4">

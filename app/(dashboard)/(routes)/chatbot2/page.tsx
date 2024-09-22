@@ -18,6 +18,7 @@ import { Paperclip, Pin, PinIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
+import { useEdgeStore } from "@/lib/edgestore";
 
 const Conversation = () => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const Conversation = () => {
   const [fileId, setFileId] = useState("");
   const { toast } = useToast();
   const [selectedFile, setSelectedFile] = useState(null);
+  const { edgestore } = useEdgeStore();
 
   useEffect(() => {
     // create new thread
@@ -45,7 +47,8 @@ const Conversation = () => {
   });
 
   const handleFileChange = async (event: any) => {
-    const file = event.target.files[0];
+    try {
+      const file = event.target.files[0] as File;
     if (file) {
       const data = new FormData();
       if (event.target.files.length < 0) return;
@@ -57,10 +60,21 @@ const Conversation = () => {
       const newData = await response.json();
       console.log(newData);
       localStorage.setItem("chatbot2FileId", newData.fileId);
+      const res = await edgestore.publicFiles.upload({ file });
+      // save data to your database
+      const saved = await axios.post("/api/save-user-file", { url: res.url, filename: file.name });
+      console.log(res);
       toast({
         variant: "default",
         title: "Success",
         description: "File uploaded Successfully",
+      });
+    }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please upload file again",
       });
     }
   };
@@ -96,7 +110,7 @@ const Conversation = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-5.3rem)] border m-3 rounded-lg pb-3 shadow-md bg-white">
+    <div className="flex flex-col h-[calc(100vh-5.3rem)] border m-3 rounded-xl pb-3 shadow-md bg-white">
       <div className="flex-1 px-4 lg:px-8 overflow-auto">
         <div className="space-y-4 mt-4">
           <div className="flex flex-col gap-y-4">

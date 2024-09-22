@@ -19,7 +19,7 @@ const geistMono = localFont({
 const monserrat = Montserrat({ weight: "500", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "The Sales Studio",
+  title: "The Sales Studios",
   description: "Developed by Qazi Adan",
 };
 

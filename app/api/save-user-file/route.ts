@@ -6,13 +6,13 @@ export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { url } = body;
-     console.log(url)
+    const { url, filename } = body;
+     console.log("fileUrl", url, "filename", filename)
     if (!userId) {
       return new NextResponse("Unauthorized User", { status: 401 });
     }
 
-    await addFiles(userId, url);
+    await addFiles(userId, url, filename);
 
     console.log("File saved");
     return new NextResponse("Report saved successfully", { status: 200 });
