@@ -2,9 +2,10 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { MessageCircleCodeIcon } from "lucide-react";
+import { MessageCircleCodeIcon, Paperclip } from "lucide-react";
+import axios from "axios";
 
 const tools = [
   {
@@ -30,32 +31,42 @@ const tools = [
   },
 ];
 
-const Dashboard = () => {
+const Files = () => {
   const router = useRouter();
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    getAllFiles()
+  },[])
+  const getAllFiles = async () => {
+    const files = await axios.get("/api/get-all-files")
+    console.log(files.data)
+    setFiles(files.data.files)
+  }
   return (
     <div className="h-[calc(100vh-5.3rem)] border m-3 rounded-lg pb-3 shadow-md bg-white">
       <div className="mb-8 flex flex-col items-center space-y-4">
-        <Image className="my-4" src="/main-logo.png" width={280} height={100} alt="main" />
+        {/* <Image className="my-4" src="/main-logo.png" width={280} height={100} alt="main" /> */}
         <h2 className="text-2xl md:text-4xl font-bold text-center mt-2">
           Hello 👋
         </h2>
         <p className="text-muted-foreground font-light text-small md:text-lg text-center">
-          The Smartest AI Chatbots Here to Help You!
+          See All Your Files Here
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 px-4 md:px-32 overflow-scroll lg:overflow-hidden">
-        {tools.map((tool, index) => (
+        {files.map((file, index) => (
           <div key={index}>
             <Card
-              onClick={() => router.push(tool.href)}
-              key={tool.href}
+              onClick={() => router.push(file)}
+              key={index}
               className="p-3 border-black/20 items-center flex justify-between hover:shadow-md transition cursor-pointer"
             >
               <div className="flex items-center gap-x-4">
-                <div className={cn("p-2 w-ft rounded-md", tool.bgColor)}>
-                  <tool.icon className={cn("w-8 h-8", tool.color)} />
+                <div className={cn("p-2 w-ft rounded-md",)}>
+                  <Paperclip className={cn("w-8 h-8")} />
                 </div>
-                <div className="font-semibold">{tool.label}</div>
+                <div className="font-semibold">{file + index}</div>
               </div>
             </Card>
           </div>
@@ -65,4 +76,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Files;

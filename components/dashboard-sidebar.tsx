@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 import { Montserrat } from "next/font/google";
-import { MenuIcon, MessageCircleCodeIcon, User2Icon } from "lucide-react";
+import { MenuIcon, MessageCircleCodeIcon, UploadCloud, User2Icon } from "lucide-react";
 
 const monserrat = Montserrat({ weight: "500", subsets: ["latin"] });
 
@@ -33,6 +33,12 @@ const sidebarLinks = [
     label: "Chatbot3",
     icon: MessageCircleCodeIcon,
     href: "/chatbot3",
+    color: "text-[#FFFFFF]",
+  },
+  {
+    label: "Uplaoded Files",
+    icon: UploadCloud,
+    href: "/files",
     color: "text-[#FFFFFF]",
   },
   {

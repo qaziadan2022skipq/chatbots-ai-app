@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,7 +19,7 @@ const geistMono = localFont({
 const monserrat = Montserrat({ weight: "500", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Chatbots",
+  title: "The Sales Studio",
   description: "Developed by Qazi Adan",
 };
 
@@ -34,7 +35,7 @@ export default function RootLayout({
           // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           className={monserrat.className}
         >
-          {children}
+          <EdgeStoreProvider> {children}</EdgeStoreProvider>
         </body>
       </html>
     </ClerkProvider>

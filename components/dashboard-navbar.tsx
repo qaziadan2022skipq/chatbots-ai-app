@@ -5,7 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 
 const Navbar = async () => {
   return (
-    <div className="flex bg-[#FFFFFF] items-center p-4">
+    <div className="flex items-center p-4">
       <MobileSidebar />
       <div className="flex w-full justify-end">
         <UserButton />
