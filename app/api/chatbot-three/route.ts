@@ -5,7 +5,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const assistant_id = process.env.ASSISTANT_ID || "";
+const assistant_id = process.env.ASSISTANT3_ID || "";
 
 export async function POST(req: Request) {
   try {

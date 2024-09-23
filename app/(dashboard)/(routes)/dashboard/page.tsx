@@ -9,23 +9,23 @@ import Heading from "@/components/heading";
 
 const tools = [
   {
-    label: "Realestate Bot",
+    label: "Voorbereiding Verkoopgesprek",
     icon: MessageCircleCodeIcon,
-    href: "/conversation",
+    href: "/chatbot1",
     color: "text-white",
     bgColor: "bg-sky-500/90",
   },
   {
-    label: "Comemrcial Bot",
+    label: "Evaluatie Verkoopgesprek",
     icon: MessageCircleCodeIcon,
-    href: "/conversation",
+    href: "/chatbot2",
     color: "text-white",
     bgColor: "bg-sky-500/90",
   },
   {
-    label: "Productive Bot",
+    label: "Acquisitie",
     icon: MessageCircleCodeIcon,
-    href: "/conversation",
+    href: "/chatbot3",
     color: "text-white",
     bgColor: "bg-sky-500/90",
   },
@@ -63,7 +63,7 @@ const Dashboard = () => {
                 <div className={cn("p-2 w-ft rounded-md", tool.bgColor)}>
                   <tool.icon className={cn("w-8 h-8", tool.color)} />
                 </div>
-                <div className="font-semibold">{tool.label}</div>
+                <div className="font-semibold text-sm">{tool.label}</div>
               </div>
             </Card>
           </div>

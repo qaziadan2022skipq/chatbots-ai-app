@@ -128,7 +128,7 @@ const Conversation = () => {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                <p className="text-sm">{String(message.message_content)}</p>
+                <pre className="text-sm whitespace-pre-wrap">{String(message.message_content)}</pre>
               </div>
             ))}
           </div>

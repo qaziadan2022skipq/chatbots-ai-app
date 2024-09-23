@@ -18,19 +18,19 @@ const sidebarLinks = [
     color: "text-[#FFFFFF]",
   },
   {
-    label: "Chatbot1",
+    label: "Voorbereiding Verkoopgesprek",
     icon: MessageCircleCodeIcon,
     href: "/chatbot1",
     color: "text-[#FFFFFF]",
   },
   {
-    label: "Chatbot2",
+    label: "Evaluatie Verkoopgesprek",
     icon: MessageCircleCodeIcon,
     href: "/chatbot2",
     color: "text-[#FFFFFF]",
   },
   {
-    label: "Chatbot3",
+    label: "Acquisitie",
     icon: MessageCircleCodeIcon,
     href: "/chatbot3",
     color: "text-[#FFFFFF]",
@@ -67,7 +67,7 @@ const Sidebar = () => {
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm group flex p-2 w-full justify-start font-medium cursor-pointer hover:text-black hover:bg-white/90 hover:drop-shadow-sm hover:rounded-lg transition",
+                "text-xs group flex p-2 w-full justify-start font-medium cursor-pointer hover:text-black hover:bg-white/90 hover:drop-shadow-sm hover:rounded-lg transition",
                 pathname === route.href
                   ? "text-black ring-1 rounded-lg"
                   : "text-[#2a3133] rounded-lg"

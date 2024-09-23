@@ -15,7 +15,7 @@ datasource db {
 
 model UserFiles {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @unique
+  userId String
   fileName String 
   fileUrl String 
   createdAt DateTime @default(now())

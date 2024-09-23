@@ -38,19 +38,19 @@ const Files = () => {
         iconColor="text-sky-500"
         bgColor="bg-sky-500/10"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-2 overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4 md:px-2 overflow-hidden">
         {files?.map((file, index) => (
           <div key={index}>
             <Card
               onClick={() => router.push(file.fileUrl)}
               key={index}
-              className="p-3 border-black/20 items-center flex justify-between hover:shadow-md transition cursor-pointer"
+              className="p-2 border-black/20 items-center flex justify-between hover:shadow-md transition cursor-pointer"
             >
               <div className="flex items-center gap-x-4">
                 <div className={cn("p-2 w-ft rounded-md",)}>
-                  <File className={cn("w-8 h-8")} />
+                  <File className={cn("w-6 h-6")} />
                 </div>
-                <div className="font-semibold">{file.fileName}</div>
+                <div className="font-semibold text-xs">{file.fileName}</div>
               </div>
             </Card>
           </div>

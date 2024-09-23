@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,7 +34,7 @@ export default function RootLayout({
           // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           className={monserrat.className}
         >
-          <EdgeStoreProvider> {children}</EdgeStoreProvider>
+          {children}
         </body>
       </html>
     </ClerkProvider>
