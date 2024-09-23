@@ -7,6 +7,8 @@ const openai = new OpenAI({
 
 const assistant_id = process.env.ASSISTANT3_ID || "";
 
+export const maxDuration = 60;
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -60,3 +62,5 @@ export async function POST(req: Request) {
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+export const dynamic = "force-dynamic";
