@@ -4,11 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-
-import { Montserrat } from "next/font/google";
 import { MenuIcon, MessageCircleCodeIcon, UploadCloud, User2Icon } from "lucide-react";
-
-const monserrat = Montserrat({ weight: "500", subsets: ["latin"] });
 
 const sidebarLinks = [
   {

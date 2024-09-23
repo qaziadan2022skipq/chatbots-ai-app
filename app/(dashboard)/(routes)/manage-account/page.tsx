@@ -2,13 +2,12 @@
 
 import { User2Icon } from "lucide-react";
 
-import { UserProfile, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,7 +19,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
 import Heading from "@/components/heading";
-import { User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({

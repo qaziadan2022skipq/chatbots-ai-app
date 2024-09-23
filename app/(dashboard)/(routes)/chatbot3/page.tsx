@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import useMessageStore from "@/hooks/message-store";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
-import { Paperclip, Pin, PinIcon } from "lucide-react";
+import { Paperclip } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
@@ -23,9 +23,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 const Conversation = () => {
   const router = useRouter();
   const messages = useMessageStore();
-  const [fileId, setFileId] = useState("");
   const { toast } = useToast();
-  const [selectedFile, setSelectedFile] = useState(null);
   const { edgestore } = useEdgeStore();
 
   useEffect(() => {
@@ -62,7 +60,7 @@ const Conversation = () => {
         localStorage.setItem("chatbot3FileId", newData.fileId);
         const res = await edgestore.publicFiles.upload({ file });
         // save data to your database
-        const saved = await axios.post("/api/save-user-file", {
+        await axios.post("/api/save-user-file", {
           url: res.url,
           filename: file.name,
         });
@@ -73,7 +71,7 @@ const Conversation = () => {
           description: "File uploaded Successfully",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Error",

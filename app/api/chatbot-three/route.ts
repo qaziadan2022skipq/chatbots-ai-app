@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       });
     }
 
-    let run = await openai.beta.threads.runs.createAndPoll(threadId, {
+    const run = await openai.beta.threads.runs.createAndPoll(threadId, {
       assistant_id: assistant_id,
       instructions:
         "Please address the user as Jane Doe. The user has a premium account.",

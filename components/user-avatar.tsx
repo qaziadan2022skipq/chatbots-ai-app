@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUser } from "@clerk/nextjs";
-import { User2Icon } from "lucide-react";
 
 export const UserAvatar = () => {
   const { user } = useUser();

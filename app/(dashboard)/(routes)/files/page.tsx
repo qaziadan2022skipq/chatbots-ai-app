@@ -1,9 +1,9 @@
 "use client";
+
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { File, UploadCloudIcon } from "lucide-react";
 import axios from "axios";
 import Heading from "@/components/heading";
