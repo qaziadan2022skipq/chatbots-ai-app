@@ -44,7 +44,6 @@ const ManageAccount = () => {
   useEffect(() => {
     set_full_name(fullName);
     set_phone_number(phoneNumber);
-    console.log(full_name, phone_number);
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -64,7 +63,6 @@ const ManageAccount = () => {
       title: "Success",
       description: "Profile updated successfully",
     });
-    console.log(response.data);
   }
   return (
     <div className="h-[calc(100vh-5.3rem)] border m-3 rounded-lg p-3 shadow-md bg-white">

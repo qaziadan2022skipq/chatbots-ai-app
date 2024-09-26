@@ -10,8 +10,6 @@ export async function POST(req: Request) {
      console.log("fileUrl", url, "filename", filename)
      
     await addAdminFiles("admin", url, filename);
-
-    console.log("File saved");
     return new NextResponse("Report saved successfully", { status: 200 });
   } catch (error) {
     console.log("[FILE_SAVE_ERROR]", error);

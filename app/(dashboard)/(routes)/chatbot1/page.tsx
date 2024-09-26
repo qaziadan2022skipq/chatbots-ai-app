@@ -30,12 +30,12 @@ const Conversation = () => {
 
   useEffect(() => {
     // create new thread
+    localStorage.setItem("chatbot1FileId", "");
     createThread();
   }, []);
 
   const createThread = async () => {
     const response = await axios.post("/api/create-thread");
-    console.log(response.data);
     localStorage.setItem("chatbot1", response.data);
   };
 
@@ -58,7 +58,6 @@ const Conversation = () => {
           body: data,
         });
         const newData = await response.json();
-        console.log(newData);
         localStorage.setItem("chatbot1FileId", newData.fileId);
         const res = await edgestore.publicFiles.upload({ file });
         // save data to your database
@@ -66,7 +65,6 @@ const Conversation = () => {
           url: res.url,
           filename: file.name,
         });
-        console.log(res);
         toast({
           variant: "default",
           title: "Success",

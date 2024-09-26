@@ -10,7 +10,6 @@ export async function POST(req: Request) {
     const formData = await req.formData(); // process file as FormData
     const uploadedFile: File | null = formData.get("file") as unknown as File; // retrieve the single file from FormData
     
-    console.log(uploadedFile)
     if(!uploadedFile){
         console.log("error")
     }
@@ -20,8 +19,6 @@ export async function POST(req: Request) {
       file: uploadedFile,
       purpose: "assistants",
     });
-
-    console.log(file.id)
 
     return NextResponse.json({fileId:file.id, message: "File successfully uploaded"}, { status: 200 });
   } catch (error) {

@@ -8,7 +8,6 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   try {
     const thread = await openai.beta.threads.create();
-    console.log(thread.id);
 
     return NextResponse.json(thread.id, { status: 200 });
   } catch (error) {

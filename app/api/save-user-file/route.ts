@@ -13,8 +13,6 @@ export async function POST(req: Request) {
     }
 
     await addFiles(userId, url, filename);
-
-    console.log("File saved");
     return new NextResponse("Report saved successfully", { status: 200 });
   } catch (error) {
     console.log("[FILE_SAVE_ERROR]", error);

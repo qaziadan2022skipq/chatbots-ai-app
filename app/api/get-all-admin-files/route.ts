@@ -9,11 +9,10 @@ export async function GET() {
     if (!userId) {
       return new NextResponse("Unauthorized User", { status: 401 });
     }
-
+    
     const files = await getAllAdminFiles(userId);
-
-    console.log("All files", files);
     return NextResponse.json({files:files}, { status: 200 });
+
   } catch (error) {
     console.log("[FILE_SAVE_ERROR]", error);
     return new NextResponse("Internal Error", { status: 500 });

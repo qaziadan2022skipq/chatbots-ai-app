@@ -28,12 +28,12 @@ const Conversation = () => {
 
   useEffect(() => {
     // create new thread
+    localStorage.setItem("chatbot2FileId", "");
     createThread();
   }, []);
 
   const createThread = async () => {
     const response = await axios.post("/api/create-thread");
-    console.log(response.data);
     localStorage.setItem("chatbot2", response.data);
   };
 
@@ -47,27 +47,28 @@ const Conversation = () => {
   const handleFileChange = async (event: any) => {
     try {
       const file = event.target.files[0] as File;
-    if (file) {
-      const data = new FormData();
-      if (event.target.files.length < 0) return;
-      data.append("file", event.target.files[0]);
-      const response = await fetch("/api/upload-file", {
-        method: "POST",
-        body: data,
-      });
-      const newData = await response.json();
-      console.log(newData);
-      localStorage.setItem("chatbot2FileId", newData.fileId);
-      const res = await edgestore.publicFiles.upload({ file });
-      // save data to your database
-      await axios.post("/api/save-user-file", { url: res.url, filename: file.name });
-      console.log(res);
-      toast({
-        variant: "default",
-        title: "Success",
-        description: "File uploaded Successfully",
-      });
-    }
+      if (file) {
+        const data = new FormData();
+        if (event.target.files.length < 0) return;
+        data.append("file", event.target.files[0]);
+        const response = await fetch("/api/upload-file", {
+          method: "POST",
+          body: data,
+        });
+        const newData = await response.json();
+        localStorage.setItem("chatbot2FileId", newData.fileId);
+        const res = await edgestore.publicFiles.upload({ file });
+        // save data to your database
+        await axios.post("/api/save-user-file", {
+          url: res.url,
+          filename: file.name,
+        });
+        toast({
+          variant: "default",
+          title: "Success",
+          description: "File uploaded Successfully",
+        });
+      }
     } catch (error) {
       toast({
         variant: "destructive",

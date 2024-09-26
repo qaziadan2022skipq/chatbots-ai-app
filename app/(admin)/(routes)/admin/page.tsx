@@ -8,9 +8,6 @@ import axios from "axios";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { auth } from "@clerk/nextjs/server";
-import { useRouter } from "next/navigation";
-import { checkRole } from "@/utils/roles";
 
 const page = () => {
   const [users, setUsers] = useState<any>([]);
@@ -22,7 +19,6 @@ const page = () => {
   const getAllUsers = async () => {
     const signedupUsers = await axios.get("/api/getAllUsersClerk");
     setUsers(signedupUsers.data.users.data);
-    console.log(signedupUsers.data);
   };
 
   const allowUser = async (userId: string) => {

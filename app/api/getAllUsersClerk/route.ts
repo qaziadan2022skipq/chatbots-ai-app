@@ -7,7 +7,6 @@ export async function GET(req: Request) {
 
   try {
     const users = await client.users.getUserList();
-    console.log(users)
     return NextResponse.json({ users : users }, { status: 200 });
   } catch (error) {
     console.error("Error fetching users:", error);

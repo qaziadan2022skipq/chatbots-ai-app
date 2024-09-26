@@ -1,21 +1,16 @@
 "use client";
 
 import { User2Icon } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import Heading from "@/components/heading";
 import { useToast } from "@/hooks/use-toast";
 import { useEdgeStore } from "@/lib/edgestore";
-import { auth } from "@clerk/nextjs/server";
-import { useRouter } from "next/navigation";
-import { checkRole } from '@/utils/roles'
 
 const AdminUploadFiles = () => {
   const { toast } = useToast();
   const { edgestore } = useEdgeStore();
-
-  
 
   const handleFileChange = async (event: any) => {
     try {
@@ -29,7 +24,6 @@ const AdminUploadFiles = () => {
           url: res.url,
           filename: file.name,
         });
-        console.log(response);
         toast({
           variant: "default",
           title: "Success",

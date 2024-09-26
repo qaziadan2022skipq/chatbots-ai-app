@@ -12,7 +12,6 @@ export async function GET() {
 
     const files = await getAllFiles("admin");
 
-    console.log("All files", files);
     return NextResponse.json({files:files}, { status: 200 });
   } catch (error) {
     console.log("[FILE_SAVE_ERROR]", error);
