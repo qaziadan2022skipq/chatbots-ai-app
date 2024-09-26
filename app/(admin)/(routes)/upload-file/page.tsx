@@ -7,10 +7,15 @@ import axios from "axios";
 import Heading from "@/components/heading";
 import { useToast } from "@/hooks/use-toast";
 import { useEdgeStore } from "@/lib/edgestore";
+import { auth } from "@clerk/nextjs/server";
+import { useRouter } from "next/navigation";
+import { checkRole } from '@/utils/roles'
 
 const AdminUploadFiles = () => {
   const { toast } = useToast();
   const { edgestore } = useEdgeStore();
+
+  
 
   const handleFileChange = async (event: any) => {
     try {
