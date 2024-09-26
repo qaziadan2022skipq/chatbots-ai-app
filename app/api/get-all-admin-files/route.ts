@@ -10,7 +10,7 @@ export async function GET() {
       return new NextResponse("Unauthorized User", { status: 401 });
     }
 
-    const files = await getAllFiles("admin");
+    const files = await getAllAdminFiles(userId);
 
     console.log("All files", files);
     return NextResponse.json({files:files}, { status: 200 });

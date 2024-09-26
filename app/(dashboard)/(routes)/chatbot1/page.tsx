@@ -19,8 +19,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { useEdgeStore } from "@/lib/edgestore";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const Conversation = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const messages = useMessageStore();
   const { toast } = useToast();
@@ -104,6 +106,7 @@ const Conversation = () => {
       });
       form.reset();
     } catch (error: any) {
+      if (error.response.status === 403) proModal.open();
       console.log(error);
     } finally {
       router.refresh();
@@ -126,7 +129,9 @@ const Conversation = () => {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                <pre className="text-sm whitespace-pre-wrap">{String(message.message_content)}</pre>
+                <pre className="text-sm whitespace-pre-wrap">
+                  {String(message.message_content)}
+                </pre>
               </div>
             ))}
           </div>

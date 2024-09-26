@@ -4,54 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { MenuIcon, MessageCircleCodeIcon, UploadCloud, User2Icon } from "lucide-react";
+import { File, MenuIcon, MessageCircleCodeIcon, UploadCloud, User2Icon } from "lucide-react";
 
 const sidebarLinks = [
   {
     label: "Dashboard",
     icon: MenuIcon,
-    href: "/dashboard",
+    href: "/admin",
     color: "text-[#FFFFFF]",
   },
   {
-    label: "Voorbereiding Verkoopgesprek",
-    icon: MessageCircleCodeIcon,
-    href: "/chatbot1",
-    color: "text-[#FFFFFF]",
-  },
-  {
-    label: "Evaluatie Verkoopgesprek",
-    icon: MessageCircleCodeIcon,
-    href: "/chatbot2",
-    color: "text-[#FFFFFF]",
-  },
-  {
-    label: "Acquisitie",
-    icon: MessageCircleCodeIcon,
-    href: "/chatbot3",
-    color: "text-[#FFFFFF]",
-  },
-  {
-    label: "Uploaded Files",
-    icon: UploadCloud,
-    href: "/files",
-    color: "text-[#FFFFFF]",
-  },
-  {
-    label: "Admin Uploaded Files",
-    icon: UploadCloud,
-    href: "/admin-files",
-    color: "text-[#FFFFFF]",
-  },
-  {
-    label: "Manage Account",
-    icon: User2Icon,
-    href: "/manage-account",
+    label: "Upload Files",
+    icon: File,
+    href: "/upload-file",
     color: "text-[#FFFFFF]",
   },
 ];
 
-const Sidebar = () => {
+const AdminSidebar = () => {
   const pathname = usePathname();
   return (
     <div className="space-y-4 py-3 flex flex-col h-full bg-[#FFFFFF] text-white border rounded-xl shadow-md">
@@ -87,4 +57,4 @@ const Sidebar = () => {
     </div>
   );
 };
-export default Sidebar;
+export default AdminSidebar;
