@@ -9,21 +9,21 @@ import Heading from "@/components/heading";
 
 const tools = [
   {
-    label: "Voorbereiding Verkoopgesprek",
+    label: "Sales Call Preparation",
     icon: MessageCircleCodeIcon,
     href: "/chatbot1",
     color: "text-white",
     bgColor: "bg-sky-500/90",
   },
   {
-    label: "Evaluatie Verkoopgesprek",
+    label: "Sales Call Evaluation",
     icon: MessageCircleCodeIcon,
     href: "/chatbot2",
     color: "text-white",
     bgColor: "bg-sky-500/90",
   },
   {
-    label: "Acquisitie",
+    label: "Acquisition",
     icon: MessageCircleCodeIcon,
     href: "/chatbot3",
     color: "text-white",

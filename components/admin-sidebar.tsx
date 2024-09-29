@@ -19,6 +19,30 @@ const sidebarLinks = [
     href: "/upload-file",
     color: "text-[#FFFFFF]",
   },
+  {
+    label: "Sales Call Preparation",
+    icon: MessageCircleCodeIcon,
+    href: "/sales-bot",
+    color: "text-[#FFFFFF]",
+  },
+  {
+    label: "Sales Call Evaluation",
+    icon: MessageCircleCodeIcon,
+    href: "/sales-call-bot",
+    color: "text-[#FFFFFF]",
+  },
+  {
+    label: "Acquisition",
+    icon: MessageCircleCodeIcon,
+    href: "/acquisition-bot",
+    color: "text-[#FFFFFF]",
+  },
+  {
+    label: "Sales Cases",
+    icon: UploadCloud,
+    href: "/admin-all-files",
+    color: "text-[#FFFFFF]",
+  },
 ];
 
 const AdminSidebar = () => {

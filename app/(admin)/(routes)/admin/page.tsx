@@ -22,8 +22,9 @@ const page = () => {
   };
 
   const allowUser = async (userId: string) => {
-    const response = await axios.post("/api/admin-allow-user", {
+    const response = await axios.post("/api/admin-add-metadata", {
       userId: userId,
+      metadata: "user",
     });
     toast({
       variant: "default",
@@ -32,8 +33,9 @@ const page = () => {
     });
   };
   const blockUser = async (userId: string) => {
-    const response = await axios.post("/api/admin-block-user", {
+    const response = await axios.post("/api/admin-add-metadata", {
       userId: userId,
+      metadata: "noUser",
     });
     toast({
       variant: "destructive",

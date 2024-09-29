@@ -1,4 +1,3 @@
-import { checkProUser } from "@/lib/proUsers";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import OpenAI from "openai/index.mjs";
@@ -28,11 +27,6 @@ export async function POST(req: Request) {
     }
     if (!threadId) {
       return new NextResponse("Thread id is required", { status: 400 });
-    }
-
-    const isPro = await checkProUser(userId);
-    if (!isPro) {
-      return new NextResponse("Pro user is required", { status: 403 });
     }
 
     let message: OpenAI.Beta.Threads.Messages.Message;
