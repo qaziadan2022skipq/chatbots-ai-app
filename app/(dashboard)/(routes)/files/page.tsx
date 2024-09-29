@@ -26,6 +26,7 @@ const Files = () => {
   },[])
   const getAllFiles = async () => {
     const files = await axios.get("/api/get-all-files")
+    console.log(files.data)
     setFiles(files.data.files)
   }
   return (

@@ -48,7 +48,7 @@ const Dashboard = () => {
           Hello 👋
         </h2> */}
         <p className="text-muted-foreground font-light text-small md:text-lg text-center">
-        Haal het maximale uit je verkoopgesprek.
+        Boost Your Sales Calls with Ai Powered Tools
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 px-4 md:px-32 overflow-scroll lg:overflow-hidden">
