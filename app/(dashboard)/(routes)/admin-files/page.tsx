@@ -7,28 +7,40 @@ import React, { useEffect, useState } from "react";
 import { File, UploadCloudIcon } from "lucide-react";
 import axios from "axios";
 import Heading from "@/components/heading";
+import { useToast } from "@/hooks/use-toast";
 
 interface File {
-  id : string
-  userId : string,
-  fileName : string,
-  fileUrl : string,
-  createdAt : Date,
-  updatedAt : Date
+  id: string;
+  userId: string;
+  fileName: string;
+  fileUrl: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const Files = () => {
   const router = useRouter();
   const [adminFiles, setAdminFiles] = useState<File[]>();
+  const { toast } = useToast();
 
   useEffect(() => {
-    getAllFiles()
-  },[])
+    getAllFiles();
+  }, []);
   const getAllFiles = async () => {
-    const files = await axios.get("/api/get-all-admin-files")
-    console.log(files.data)
-    setAdminFiles(files.data.files)
-  }
+    try {
+      const files = await axios.get("/api/get-all-admin-files-user");
+      console.log(files.data);
+      setAdminFiles(files.data.files);
+    } catch (error: any) {
+      if (error.response.status === 403) {
+        toast({
+          variant: "destructive",
+          title: "Access Blocked",
+          description: "You dont have access to Sales Cases. Please contact Admin.",
+        });
+      }
+    }
+  };
   return (
     <div className="h-[calc(100vh-5.3rem)] border m-3 rounded-xl p-3 shadow-md bg-white">
       <Heading
@@ -47,7 +59,7 @@ const Files = () => {
               className="p-2 border-black/20 items-center flex justify-between hover:shadow-md transition cursor-pointer"
             >
               <div className="flex items-center gap-x-4">
-                <div className={cn("p-2 w-ft rounded-md",)}>
+                <div className={cn("p-2 w-ft rounded-md")}>
                   <File className={cn("w-6 h-6")} />
                 </div>
                 <div className="font-semibold text-xs">{file.fileName}</div>

@@ -13,7 +13,7 @@ export const checkProUser = async (userId: string) => {
   }
 };
 
-export const allowUser = async (userId: string) => {
+export const addProUser = async (userId: string) => {
   await prismadb.proUsers.create({
     data: {
       userId: userId
@@ -21,7 +21,7 @@ export const allowUser = async (userId: string) => {
   });
 };
 
-export const blockUser = async (userId: string) => {
+export const removeProUser = async (userId: string) => {
   await prismadb.proUsers.delete({
     where: {
       userId: userId
