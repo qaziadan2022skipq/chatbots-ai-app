@@ -110,6 +110,9 @@ const Conversation = () => {
 
   return (
     <div className="flex flex-col h-[calc(100vh-5.3rem)] border m-3 rounded-xl pb-3 shadow-md bg-white">
+      <Button onClick={() => window.location.reload()} className="w-fit m-2">
+        New Chat
+      </Button>
       <div className="flex-1 px-4 lg:px-8 overflow-auto">
         <div className="space-y-4 mt-4">
           <div className="flex flex-col gap-y-4">
