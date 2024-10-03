@@ -51,7 +51,7 @@ const AdminSidebar = () => {
     <div className="space-y-4 py-3 flex flex-col h-full bg-[#FFFFFF] text-white border rounded-xl shadow-md">
       <div className="flex flex-col gap-y-3 px-4 py-2">
         <Link
-          href="/chat"
+          href="/admin"
           className="flex justify-center mb-2 text-xl font-bold"
         >
           

@@ -11,18 +11,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { cn } from "@/lib/utils";
-import useMessageStore from "@/hooks/message-store";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
-import { Paperclip } from "lucide-react";
+import { PaperclipIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { useEdgeStore } from "@/lib/edgestore";
+import useMessageStoreChatbot3 from "@/hooks/message-store-chatbot3";
 
 const Conversation = () => {
   const router = useRouter();
-  const messages = useMessageStore();
+  const messages = useMessageStoreChatbot3();
   const { toast } = useToast();
   const { edgestore } = useEdgeStore();
 
@@ -138,13 +138,18 @@ const Conversation = () => {
           )}
         </div>
       </div>
-      <div id="Message" className="px-4 lg:px-8">
+      <div id="Message" className="px-4 lg:px-8 flex items-center">
+        <Button
+          onClick={handleUploadClick}
+          className="bg-transparent col-span-1 lg:col-span-1 hover:bg-sky-200"
+        >
+          <PaperclipIcon className="text-sky-500" />
+        </Button>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="
               rounded-lg 
-              border 
               w-full 
               p-4 
               px-3 
@@ -161,16 +166,11 @@ const Conversation = () => {
               onChange={handleFileChange}
               style={{ display: "none" }} // Hide the default file input
             />
-            <Button
-              onClick={handleUploadClick}
-              className="w-fit bg-transparent col-span-1 lg:col-span-1 hover:bg-sky-200"
-            >
-              <Paperclip className="text-sky-500" />
-            </Button>
+
             <FormField
               name="prompt"
               render={({ field }) => (
-                <FormItem className="col-span-12 lg:col-span-9">
+                <FormItem className="col-span-12 lg:col-span-10 border px-1 rounded-lg">
                   <FormControl className="m-0 p-0">
                     <Input
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -183,7 +183,7 @@ const Conversation = () => {
               )}
             />
             <Button
-              className="col-span-12 lg:col-span-2 w-full bg-sky-500"
+              className="col-span-12 lg:col-span-2 w-full bg-sky-500 "
               type="submit"
               disabled={isLoading}
               size="icon"

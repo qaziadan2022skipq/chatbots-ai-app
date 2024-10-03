@@ -10,6 +10,14 @@ export const addAdminFiles = async (userId: string, fileUrl: string, filename:st
   });
 };
 
+export const deleteAdminFiles = async (fileId: string) => {
+  await prismadb.adminFiles.delete({
+    where: { 
+      id: fileId
+   },
+  });
+};
+
 export const getAllAdminFiles = async (userId: string) => {
   const userFiles = await prismadb.adminFiles.findMany({
     where: {
