@@ -19,3 +19,13 @@ export const getAllFiles = async (userId: string) => {
 
   return userFiles;
 };
+
+export const deleteFiles = async (fileId: string) => {
+  const userFile = await prismadb.userFiles.delete({
+    where: {
+      id: fileId,
+    },
+  });
+
+  return userFile;
+};
