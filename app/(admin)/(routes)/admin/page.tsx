@@ -18,8 +18,13 @@ const page = () => {
   }, []);
   const getAllUsers = async () => {
     const signedupUsers = await axios.get("/api/getAllUsersClerk");
-    setUsers(signedupUsers.data.users.data);
     console.log(signedupUsers.data.users.data);
+    const currentUsers = signedupUsers.data.users.data.filter((user: any) => {
+      if (user.publicMetadata.role !== "admin") {
+        return user;
+      }
+    });
+    setUsers(currentUsers);
   };
 
   const allowUser = async (userId: string) => {
@@ -46,24 +51,52 @@ const page = () => {
   };
 
   const allowUserSalesCases = async (userId: string) => {
-    const response = await axios.post("/api/admin-make-user-pro", {
-      userId: userId,
-    });
-    toast({
-      variant: "default",
-      title: "User Unblocked",
-      description: "User is allowed to use website",
-    });
+    try {
+      await axios.post("/api/admin-make-user-pro", {
+        userId: userId,
+      });
+
+      await axios.post("/api/admin-add-metadata-cases", {
+        userId: userId,
+        metadata: "allow",
+      });
+
+      toast({
+        variant: "default",
+        title: "User Unblocked",
+        description: "User is allowed to use website",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please try again later",
+      });
+    }
   };
   const blockUserSalesCases = async (userId: string) => {
-    const response = await axios.post("/api/admin-block-user-pro", {
-      userId: userId,
-    });
-    toast({
-      variant: "default",
-      title: "User Unblocked",
-      description: "User is allowed to use website",
-    });
+    try {
+      await axios.post("/api/admin-block-user-pro", {
+        userId: userId,
+      });
+
+      await axios.post("/api/admin-add-metadata-cases", {
+        userId: userId,
+        metadata: "notAllowed",
+      });
+
+      toast({
+        variant: "default",
+        title: "User Unblocked",
+        description: "User is blocked to use website",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please try again later",
+      });
+    }
   };
   return (
     <div>
@@ -88,32 +121,41 @@ const page = () => {
                 </div>
                 <div className="flex items-center gap-x-2 mt-2">
                   <div className="flex gap-x-2">
-                    {user.publicMetadata.role === "user" ? (
-                      <Button
-                        onClick={() => blockUser(user.id)}
-                        className="bg-sky-500"
-                      >
-                        Block
-                      </Button>
-                    ) : (
+                    {user.publicMetadata.role === "" ? (
                       <Button
                         onClick={() => allowUser(user.id)}
                         className="bg-sky-500"
                       >
                         Allow
                       </Button>
+                    ) : (
+                      <Button
+                        onClick={() => blockUser(user.id)}
+                        className="bg-sky-500"
+                      >
+                        Block
+                      </Button>
                     )}
                   </div>
                   <div className="flex gap-x-2">
                     <Button
                       onClick={() => allowUserSalesCases(user.id)}
-                      className="bg-sky-500"
+                      className={cn(
+                        user.publicMetadata.seeCases === "allow"
+                          ? "bg-black/50"
+                          : "bg-sky-500"
+                      )}
                     >
                       Allow Access To Sales Cases
                     </Button>
                     <Button
                       onClick={() => blockUserSalesCases(user.id)}
-                      className="bg-sky-500"
+                      className={cn(
+                        "bg-sky-500",
+                        user.publicMetadata.seeCases === "allow"
+                          ? "bg-sky-500"
+                          : "bg-black/50"
+                      )}
                     >
                       Block Access To Sales Cases
                     </Button>
