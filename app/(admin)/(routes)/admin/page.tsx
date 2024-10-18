@@ -121,19 +121,19 @@ const page = () => {
                 </div>
                 <div className="flex items-center gap-x-2 mt-2">
                   <div className="flex gap-x-2">
-                    {user.publicMetadata.role === "" ? (
-                      <Button
-                        onClick={() => allowUser(user.id)}
-                        className="bg-sky-500"
-                      >
-                        Allow
-                      </Button>
-                    ) : (
+                    {user.publicMetadata.role === "allow" ? (
                       <Button
                         onClick={() => blockUser(user.id)}
                         className="bg-sky-500"
                       >
                         Block
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => allowUser(user.id)}
+                        className="bg-sky-500"
+                      >
+                        Allow
                       </Button>
                     )}
                   </div>
